@@ -11,7 +11,7 @@ async function post() {
       },
       body: new URLSearchParams({
         media_type: "TEXT",
-        text: `scheiß test:`,
+        text: `scheiß test`,
         auto_publish_text: "true"
       })
     }
