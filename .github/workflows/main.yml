@@ -2,8 +2,8 @@ name: Threads Bot
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
+    - cron: "23,53 * * * *"  
+    workflow_dispatch:
 
 jobs:
   post:
