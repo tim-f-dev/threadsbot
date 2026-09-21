@@ -16,7 +16,7 @@ if (words.length === 0) {
 
 // Set this to approximately when you want word #1 to start.
 // IMPORTANT: Z means UTC.
-const START_TIME = new Date("2026-09-21T22:00:00Z").getTime();
+const START_TIME = new Date("2026-09-21T23:30:00Z").getTime();
 
 const INTERVAL = 30 * 60 * 1000;
 
