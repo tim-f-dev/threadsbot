@@ -1,12 +1,14 @@
 name: Threads Bot
 
 on:
-schedule:
-- cron: "*11,41 * * * *"
-workflow_dispatch:
+  schedule:
+    - cron: "13,43 * * * *"
+
+  workflow_dispatch:
+
 jobs:
   post:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v5
