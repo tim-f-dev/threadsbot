@@ -2,7 +2,7 @@ name: Threads Bot
 
 on:
   schedule:
-    - cron: "19,49 * * * *"
+    - cron: "*/5 * * * *"
 
   workflow_dispatch:
 
