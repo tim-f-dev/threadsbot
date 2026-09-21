@@ -5,20 +5,37 @@ const token = process.env.THREADS_TOKEN;
 const words = fs
   .readFileSync("words.txt", "utf8")
   .split(/\r?\n/)
-  .map(w => w.trim())
+  .map(word => word.trim())
   .filter(Boolean);
 
-const START_TIME = new Date("2026-09-22T00:00:00Z").getTime();
+console.log(`Loaded ${words.length} words.`);
+
+if (words.length === 0) {
+  throw new Error("words.txt is empty!");
+}
+
+// Set this to approximately when you want word #1 to start.
+// IMPORTANT: Z means UTC.
+const START_TIME = new Date("2026-09-21T22:30:00Z").getTime();
+
 const INTERVAL = 30 * 60 * 1000;
 
-const index = Math.floor(
-  (Date.now() - START_TIME) / INTERVAL
-);
+const elapsed = Date.now() - START_TIME;
+const rawIndex = Math.floor(elapsed / INTERVAL);
 
-const word = words[index % words.length];
+// Always produce a valid array index
+const index = ((rawIndex % words.length) + words.length) % words.length;
+
+const word = words[index];
+
+console.log(`Raw index: ${rawIndex}`);
+console.log(`Word index: ${index}`);
+console.log(`Word: ${word}`);
 
 async function post() {
-  console.log(`Posting #${index + 1}: ${word}`);
+  if (!word) {
+    throw new Error(`No word found at index ${index}`);
+  }
 
   const response = await fetch(
     "https://graph.threads.net/me/threads",
@@ -38,8 +55,12 @@ async function post() {
 
   const result = await response.text();
 
-  console.log(response.status);
+  console.log(`Threads status: ${response.status}`);
   console.log(result);
+
+  if (!response.ok) {
+    throw new Error(`Threads API returned ${response.status}`);
+  }
 }
 
 post();
