@@ -8,7 +8,7 @@ const words = fs
   .map(w => w.trim())
   .filter(Boolean);
 
-const START_TIME = new Date("2026-09-22T02:00:00Z").getTime();
+const START_TIME = new Date("2026-09-22T00:00:00Z").getTime();
 const INTERVAL = 30 * 60 * 1000;
 
 const index = Math.floor(
