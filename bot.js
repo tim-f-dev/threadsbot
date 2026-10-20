@@ -47,7 +47,7 @@ async function post() {
       },
       body: new URLSearchParams({
         media_type: "TEXT",
-        text: "scheiß "+word,
+        text: word,
         auto_publish_text: "true"
       })
     }

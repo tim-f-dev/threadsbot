@@ -1,10 +1,6 @@
 name: Threads Bot
 
-on:
-  schedule:
-    - cron: "*/5 * * * *"
-
-  workflow_dispatch:
+on: {}
 
 jobs:
   post:
